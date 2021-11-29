@@ -19,17 +19,18 @@ export class HomePage implements OnInit {
 
 
   
-  public showScanBtn = true
-  public showTakePic = false
-  private basicUrl = 'https://be-app-hiring-bixinf-test.apps.bi-x-ire.tftp.p1.openshiftapps.com/'
-  public status = ''
-  public uploadImageName = ''
-  public username = ''
-  public password = ''
+  public showScanBtn:boolean = true
+  public showTakePic:boolean = false
+  // private basicUrl = 'https://be-app-hiring-bixinf-test.apps.bi-x-ire.tftp.p1.openshiftapps.com/'
+  private basicUrl:string = ''
+  public status:string = ''
+  public uploadImageName:string = ''
+  public username:string = ''
+  public password:string = ''
   ngOnInit() {
     console.log('on init')
   }
-  scan(): void {
+  scan() {
     this.qrScanner.prepare()
     .then((status: QRScannerStatus) => {
        if (status.authorized) {
@@ -48,6 +49,8 @@ export class HomePage implements OnInit {
                 this.status = res.status
                 if (res.status === 'ok') {
                   this.showTakePic = true
+                } else {
+                  this.showTakePic = false
                 }
               })
            }
